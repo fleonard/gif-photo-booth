@@ -1,0 +1,49 @@
+{
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "ecmaFeatures": {
+    "modules": true
+  },
+  "globals": {
+
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "rules": {
+    "indent": [ "error", 2, { "SwitchCase": 1 } ],
+    "linebreak-style": [ "error", "unix" ],
+
+    "quotes": [ "error", "single" ],
+    "semi": [ "error", "always" ],
+    "brace-style": [ "error", "1tbs" ],
+    "block-spacing": [ "error", "always" ],
+    "keyword-spacing": [ "error", { "before": true, "after": true } ],
+    "comma-spacing": [ "error", { "before": false, "after": true } ],
+    "arrow-spacing": [ "error", { "before": true, "after": true } ],
+    "key-spacing": [ "error", { "beforeColon": false, "afterColon": true } ],
+    "object-curly-spacing": [ "error", "always" ],
+    "array-bracket-spacing": [ "error", "always" ],
+
+    "eqeqeq": "error",
+    "prefer-const": "error",
+    "no-extra-parens": "warn",
+    "no-magic-numbers": "warn",
+
+    "jsx-quotes": [ "error", "prefer-double" ],
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off"
+  }
+}
