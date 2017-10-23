@@ -1,0 +1,53 @@
+{
+  "name": "gif-photo-booth",
+  "version": "0.0.1",
+  "description": "React + Redux App",
+  "main": "index.js",
+  "scripts": {
+    "bundle": "webpack",
+    "start": "webpack-dev-server --inline --content-base public --port 8888",
+    "lint": "eslint src --ext .js --ext .jsx",
+    "test": "babel-tape-runner tests/units/**/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "fleonard",
+  "license": "ISC",
+  "homepage": "",
+  "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-plugin-transform-object-rest-spread": "^6.20.2",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-tape-runner": "^2.0.1",
+    "css-loader": "^0.26.1",
+    "eslint": "^3.12.2",
+    "eslint-plugin-react": "^6.8.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "gifshot": "^0.3.2",
+    "postcss-cssnext": "^2.9.0",
+    "postcss-extend": "^1.0.5",
+    "postcss-import": "^9.0.0",
+    "postcss-loader": "^1.2.1",
+    "postcss-nested": "^2.1.2",
+    "react-addons-css-transition-group": "^15.6.2",
+    "react-router-dom": "^4.2.2",
+    "tape": "^4.6.3",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "dependencies": {
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "es6-promise": "^4.1.0",
+    "isomorphic-fetch": "^2.2.1",
+    "ramda": "^0.23.0",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "react-redux": "^5.0.1",
+    "redux": "^3.6.0",
+    "redux-saga": "^0.14.3"
+  }
+}

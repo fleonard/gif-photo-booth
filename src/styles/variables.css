@@ -1,0 +1,5 @@
+:root {
+  --base-size: 16px;
+}
+
+@custom-media --min-resolution (min-resolution: 192dpi);

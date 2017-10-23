@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+@import './variables.css';
+@import './resets.css';
+@import './animations.css';
+@import './helpers.css';
+
+html, body, #root, .App {
+    height: 100%;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+    background: #EEEEEE;
+}
+  
+  

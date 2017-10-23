@@ -1,0 +1,22 @@
+.header {
+    height: 40px;
+}
+
+.nav {
+    position: relative;
+    display: flex;;
+    align-items: center;
+    height: 100%;
+}
+
+.link{
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 12px;
+    padding: 10px;
+    color: #000000;
+}
+
+.selected {
+    text-decoration: underline;
+}
