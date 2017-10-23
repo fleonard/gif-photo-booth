@@ -40,13 +40,13 @@ class PhotoBooth extends React.Component {
         const formData = new FormData();
         formData.append('data', image);
         
-        fetch('/php/saveGif.php', { method: 'POST', body: formData })
-        .then(function (response) {
-          return response.text();
-        })
-        .then(function (body) {
-          alert(body);
-        });
+        fetch('php/saveGif.php', { method: 'POST', body: formData })
+          .then(function (response) {
+            return response.text();
+          })
+          .then(function (body) {
+            alert(body);
+          });
       }
     });
 
@@ -60,13 +60,13 @@ class PhotoBooth extends React.Component {
         transitionEnterTimeout={600}
         transitionLeaveTimeout={200}
         transitionName={'SlideOut'}
-        >
-          <div className={cn(styles.container)}>
-            <p className={cn(styles.text)}>PhotoBooth</p>
-            <div className={cn(styles.imagePreview)}></div>
-            <a href="#" onClick={(e) => this.recordGif(e)} type="button" id="create-gif" role="button">Create GIF</a>
-            <progress max="1" value="0" className={cn(styles.progressBar) + ' hidden'}></progress>
-          </div>
+      >
+        <div className={cn(styles.container)}>
+          <p className={cn(styles.text)}>PhotoBooth</p>
+          <div className={cn(styles.imagePreview)}></div>
+          <a href="#" onClick={(e) => this.recordGif(e)} type="button" id="create-gif" role="button">Create GIF</a>
+          <progress max="1" value="0" className={cn(styles.progressBar) + ' hidden'}></progress>
+        </div>
       </ReactCSSTransitionGroup>
     );
   }
