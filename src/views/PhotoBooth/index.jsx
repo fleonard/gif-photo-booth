@@ -15,8 +15,11 @@ class PhotoBooth extends React.Component {
   recordGif(e){
     e.preventDefault();
 
+    const downloadAttrSupported = ('download' in document.createElement('a'));
     const gifshotImagePreview = document.querySelector('.photobooth-imagePreview');
     const progressBar = document.querySelector('.photobooth-progressBar');
+    const saveGIFButton = document.querySelector('#save-gif');
+
 
     gifshot.createGIF({
       progressCallback: function (captureProgress) {
@@ -36,6 +39,11 @@ class PhotoBooth extends React.Component {
 
         gifshotImagePreview.innerHTML = '';
         gifshotImagePreview.appendChild(animatedImage);
+
+        if (downloadAttrSupported) {
+          saveGIFButton.setAttribute('href', image);
+          saveGIFButton.classList.remove('hidden');
+        }
 
         const formData = new FormData();
         formData.append('data', image);
@@ -65,6 +73,7 @@ class PhotoBooth extends React.Component {
           <p className={cn(styles.text)}>PhotoBooth</p>
           <div className={cn(styles.imagePreview)}></div>
           <a href="#" onClick={(e) => this.recordGif(e)} type="button" id="create-gif" role="button">Create GIF</a>
+          <a href="#" className="hidden" type="button" id="save-gif" role="button" download="demo.gif">Save GIF</a>
           <progress max="1" value="0" className={cn(styles.progressBar) + ' hidden'}></progress>
         </div>
       </ReactCSSTransitionGroup>
