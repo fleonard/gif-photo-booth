@@ -1,4 +1,22 @@
+import { handleActions } from 'redux-actions';
 import { combineReducers } from 'redux';
-import data from './data';
 
-export default combineReducers({ data });
+import { types } from '../actions';
+
+const ui = handleActions(
+  {
+    [types.CREATE_GIF] (state) {
+      return { ...state };
+    }
+  },
+  {
+
+  }
+);
+
+const reducers = combineReducers({
+  ui
+});
+
+export default reducers;
+

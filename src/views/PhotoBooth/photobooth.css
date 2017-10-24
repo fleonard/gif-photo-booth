@@ -1,19 +1,19 @@
 .container {
-    position: relative;
+  position: relative;
 }
 .text{
-    color: red;
+  color: red;
 }
 .imagePreview {
-    margin-top: 10px;
-    height: 200px;
-    width: 200px;
-    border: 1px solid red;
+  margin-top: 10px;
+  height: 200px;
+  width: 200px;
+  border: 1px solid red;
 }
 
 .progressBar {
-    position: absolute;
-    top: 100px;
-    left: 5px;
-    width: 190px;
+  position: absolute;
+  top: 100px;
+  left: 5px;
+  width: 190px;
 }

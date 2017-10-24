@@ -3,7 +3,6 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const NODE_ENV = process.env.NODE_ENV || 'production';
 
-
 const config = {
   context: __dirname,
   entry: {
@@ -59,7 +58,8 @@ const config = {
     return [
       require('postcss-import')({ path: [ path.resolve(__dirname, 'src') ] }),
       require('postcss-cssnext'),
-      require('postcss-nested')
+      require('postcss-nested'),
+      require('postcss-pixels-to-rem')
     ];
   }
 };

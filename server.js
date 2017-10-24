@@ -20,13 +20,12 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
 
-//Routes for the api
+//API Routes
 const router = express.Router();  
 
 router.use(function(req, res, next) {
-    // do logging
   console.log('Something is happening.');
-  next(); // make sure we go to the next routes and don't stop here
+  next();
 });
 
 router.get('/', function(req, res) {
@@ -49,7 +48,8 @@ router.route('/saveGif')
           console.log(err);
       });
 
-      res.json({ message: 'Gif Saved!' });
+      res.setHeader('Content-Type', 'application/json');
+      res.send(JSON.stringify({ message: 'Gif Saved!' }, null, 3));
 
     });
 
