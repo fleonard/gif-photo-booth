@@ -41,6 +41,7 @@
     "prefer-const": "error",
     "no-extra-parens": "warn",
     "no-magic-numbers": "warn",
+    "no-console": "warn",
 
     "jsx-quotes": [ "error", "prefer-double" ],
     "react/react-in-jsx-scope": "off",

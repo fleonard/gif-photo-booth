@@ -1,30 +1,29 @@
 const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const NODE_ENV = process.env.NODE_ENV || 'production';
 
-module.exports = {
+
+const config = {
   context: __dirname,
   entry: {
     main: ['./src/index.js', './src/styles/main.css']
   },
-  devServer: { 
-    inline: true 
-  },
   output: {
     pathinfo: true,
     path: path.resolve(__dirname + '/public'),
-    filename: 'scripts/[name].bundle.js'
+    filename: 'scripts/[name].bundle.dev.js'
   },
   resolve: {
     modulesDirectories: ['node_modules', 'src'],
-    extensions: [ '', '.js', '.jsx', '.css' ]
+    extensions: ['', '.js', '.jsx', '.css', '.svg']
   },
   module: {
     loaders: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'babel'
+        loader: 'babel?compact=false'
       },
       { 
         test: /\.(png|woff|woff2|eot|ttf)$/, 
@@ -42,9 +41,17 @@ module.exports = {
       }
     ]
   },
+  devServer: {
+    contentBase: './public',
+    hot: true,
+    historyApiFallback: true
+  },
   plugins: [
+    new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify(NODE_ENV) }}),
     new webpack.ProvidePlugin({ 'React': 'react' }),
-    new ExtractTextPlugin('styles/[name].bundle.css')
+    new ExtractTextPlugin('styles/[name].bundle.css'),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ],
   devtool: 'source-map',
   postcss: function() {
@@ -55,3 +62,21 @@ module.exports = {
     ];
   }
 };
+
+switch (NODE_ENV) {
+  case 'production':
+    config.plugins = config.plugins.concat([
+      new webpack.optimize.OccurenceOrderPlugin(),
+      new webpack.optimize.UglifyJsPlugin({
+        compressor: { warnings: false },
+        output: { comments: false }
+      })
+    ]);
+    config.output.filename = 'scripts/[name].bundle.js';
+    break;
+  case 'development':
+  default:
+    break;
+}
+
+module.exports = config;
