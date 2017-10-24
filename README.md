@@ -10,10 +10,16 @@ $ npm i
 
 ## Development
 
-To run
+To run develop
 
 ```sh
-$ npm start
+$ npm run start
+```
+
+To run server
+
+```sh
+$ npm run server
 ```
 
 ## Tools used
