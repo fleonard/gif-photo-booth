@@ -44,7 +44,8 @@ const config = {
   devServer: {
     contentBase: './public',
     hot: true,
-    historyApiFallback: true
+    historyApiFallback: true,
+    port: 8888
   },
   plugins: [
     new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify(NODE_ENV) }}),

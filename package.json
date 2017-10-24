@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "bundle": "webpack",
-    "start": "webpack-dev-server --inline --content-base public --port 8888",
+    "start": "webpack-dev-server --inline --hot",
     "server": "webpack && babel-node server.js",
     "lint": "eslint src --ext .js --ext .jsx",
     "test": "babel-tape-runner tests/units/**/*.spec.js"
