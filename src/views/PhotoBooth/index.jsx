@@ -15,7 +15,7 @@ class PhotoBooth extends React.Component {
   recordGif(e){
     e.preventDefault();
 
-    const downloadAttrSupported = ('download' in document.createElement('a'));
+    const downloadAttrSupported = 'download' in document.createElement('a');
     const gifshotImagePreview = document.querySelector('.photobooth-imagePreview');
     const progressBar = document.querySelector('.photobooth-progressBar');
     const saveGIFButton = document.querySelector('#save-gif');
@@ -44,16 +44,23 @@ class PhotoBooth extends React.Component {
           saveGIFButton.setAttribute('href', image);
           saveGIFButton.classList.remove('hidden');
         }
-
-        const formData = new FormData();
-        formData.append('data', image);
         
-        fetch('php/saveGif.php', { method: 'POST', body: formData })
+        fetch('api/saveGif', 
+          { 
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }, 
+            body: JSON.stringify({
+              data: image
+            }) 
+          })
           .then(function (response) {
             return response.text();
           })
           .then(function (body) {
-            alert(body);
+            console.log(body.message);
           });
       }
     });
