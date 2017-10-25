@@ -78,7 +78,7 @@ let plugins = [];
 entries.map(entry => {
   config.entry[entry.key] = entry.points;
 
-  console.log(appConfig.ENV, appConfig.USE_EXPRESS, entry.hot)
+  console.log(appConfig.ENV, appConfig.USE_EXPRESS, entry.hot);
 
   if (appConfig.ENV === 'development' && appConfig.USE_EXPRESS && entry.hot) {
     config.entry[entry.key].unshift('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000');

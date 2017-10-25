@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Photobooth from './photobooth.component';
 import { connect } from 'react-redux';
 

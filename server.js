@@ -45,7 +45,7 @@ router.route('/saveGif')
       const filename = 'gif_' + timestamp;
 
       fs.outputFile(__dirname + '/public/gifs/' + filename + '.' + ext, buf, (err) => {
-          console.log(err);
+        console.log(err);
       });
 
       res.setHeader('Content-Type', 'application/json');

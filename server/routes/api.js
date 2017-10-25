@@ -14,7 +14,7 @@ router.post('/saveGif', (req, res) => {
   const filename = 'gif_' + timestamp;
 
   fse.outputFile('./public/assets/gifs/' + filename + '.' + ext, buf, (err) => {
-      console.log(err);
+    console.log(err);
   });
 
   res.setHeader('Content-Type', 'application/json');
