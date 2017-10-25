@@ -13,13 +13,7 @@ $ npm i
 To run develop
 
 ```sh
-$ npm run start
-```
-
-To run server
-
-```sh
-$ npm run server
+$ npm run start:express
 ```
 
 ## Tools used

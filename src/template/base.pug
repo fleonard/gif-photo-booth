@@ -1,6 +1,6 @@
 block includes
 
-- var settings = { DESCRIPTION: 'Gif Photo Booth', AUTHOR: 'Francesco', USE_ANALYTICS: false, TITLE: 'Gif Photo Booth®' }
+- var settings = { DESCRIPTION: 'Gif Photo Booth', AUTHOR: 'fleonard', USE_ANALYTICS: false, TITLE: 'Gif Photo Booth®' }
 
 //- App starts here ----------------------------------------
 doctype html
@@ -24,7 +24,7 @@ html(lang='en')
       //- Styles
       block styles
         if !isDev
-          link(rel='stylesheet', href='/styles/ark.app.1.0.0.css')
+          link(rel='stylesheet', href='/styles/main.app.1.0.0.css')
 
       //- Fav Icons
       link(rel='apple-touch-icon', sizes='180x180', href='/apple-touch-icon.png')
@@ -36,46 +36,11 @@ html(lang='en')
       meta(name='msapplication-TileImage', content='/mstile-144x144.png')
       meta(name='theme-color', content='#ffffff')
       
-      
-      //- Social media tags
-      block social
-
-        block Facebook
-          //- Facebook Open Graph tags
-          meta(property='og:description', content=settings.DESCRIPTION)
-          meta(property='og:type', content='website')
-          meta(property='og:site_name', content=settings.TITLE)
-          
-        block twitter
-          //- Twitter Tags
-          meta(name='twitter:card', content='summary_large_image')
-          meta(name='twitter:site', content='@haven')
-          meta(name='twitter:creator', content='@haven')
-          meta(name='twitter:title', content=settings.TITLE)
-          meta(name='twitter:description', content=settings.DESCRIPTION)
-          meta(name='twitter:image', content='/images/jpg/logo.jpg')
-      
   //- Body ---------------------------------------------------------------
   body
-    
-    //- Demo Nav
-    block navigation
-    
-    //- Main Header : Overwrite this block in your extended view
-    //- If it alters from the main template
-    header(role='banner')
-      block header
 
-    //- Content : Overwrite this block in your extended view
     main(role='main', tabindex='-1')
       block content
-
-    //- Main Footer : Overwrite this block in your extended view
-    //- footer#footer.hv-page-footer(role="contentinfo")
-    block footer
-
-    //- Inline Data -----------------------------------------------------
-    block data
 
     //- JavaScripts -----------------------------------------------------
     block scripts

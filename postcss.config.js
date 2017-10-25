@@ -25,8 +25,7 @@ module.exports = {
     // Add a namespace to prevent cross-library contamination
     // require('postcss-prefixer')(pkg.config.CSS_NAMESPACE, {
     //   ignore: [
-    //     /vx_/,
-    //     /react-datepicker/
+    //     /vx_/
     //   ]
     // })
   ]

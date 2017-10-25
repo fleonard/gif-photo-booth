@@ -7,7 +7,6 @@
     "bundle": "webpack",
     "start": "NODE_ENV=development webpack-dev-server --inline --hot",
     "start:express": "cross-env NODE_ENV=development babel-node ./server/bin/www",
-    "server": "webpack && babel-node server.js",
     "lint": "eslint src --ext .js --ext .jsx",
     "test": "babel-tape-runner tests/units/**/*.spec.js"
   },
@@ -38,6 +37,7 @@
     "express-unless": "^0.3.1",
     "extract-text-webpack-plugin": "^3.0.0",
     "gifshot": "^0.3.2",
+    "lodash-webpack-plugin": "^0.11.4",
     "morgan": "^1.8.2",
     "postcss-at-rules-variables": "^0.1.1",
     "postcss-class-prefix": "^0.3.0",
@@ -84,7 +84,7 @@
     "redux-saga": "^0.15.3"
   },
   "config": {
-    "CSS_NAMESPACE": "fran-",
+    "CSS_NAMESPACE": "",
     "OUTPUT_PATH": "./public",
     "OUTPUT_NAME": "main",
     "USE_EXPRESS": true,

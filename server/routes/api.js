@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express'),
+  fse = require('fs-extra'),
   router = express.Router();
 
 router.post('/saveGif', (req, res) => {
@@ -12,7 +13,7 @@ router.post('/saveGif', (req, res) => {
   const timestamp = new Date().getTime().toString();
   const filename = 'gif_' + timestamp;
 
-  fs.outputFile(__dirname + '/public/gifs/' + filename + '.' + ext, buf, (err) => {
+  fse.outputFile('./public/assets/gifs/' + filename + '.' + ext, buf, (err) => {
       console.log(err);
   });
 
