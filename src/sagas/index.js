@@ -26,7 +26,7 @@ function handleCreateGif() {
     if (!obj.error) {
       const image = obj.image,
         animatedImage = document.createElement('img');
-      
+
       animatedImage.src = image;
 
       progressBar.classList.add('hidden');
@@ -39,17 +39,17 @@ function handleCreateGif() {
         saveGIFButton.setAttribute('href', image);
         saveGIFButton.classList.remove('hidden');
       }
-      
+
       fetch('api/saveGif', 
-        { 
+        {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
-          }, 
+          },
           body: JSON.stringify({
             data: image
-          }) 
+          })
         })
         .then(function (response) {
           return response.json();

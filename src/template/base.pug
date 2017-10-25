@@ -1,0 +1,86 @@
+block includes
+
+- var settings = { DESCRIPTION: 'Gif Photo Booth', AUTHOR: 'Francesco', USE_ANALYTICS: false, TITLE: 'Gif Photo Booth®' }
+
+//- App starts here ----------------------------------------
+doctype html
+block license
+html(lang='en')
+
+  //- Head ---------------------------------------------------------------
+  head
+    block head
+      meta(charset='utf-8')
+      meta(http-equiv='X-UA-Compatible', content='IE=edge')
+
+      title= `${title} | ${settings.TITLE} is dev ${isDev}`
+
+      //- Meta
+      meta(name='description', content=settings.DESCRIPTION)
+      meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no')
+      link(rel='apple-touch-icon', href='/apple-touch-icon.png')
+      meta(name='author', content=settings.AUTHOR)
+
+      //- Styles
+      block styles
+        if !isDev
+          link(rel='stylesheet', href='/styles/ark.app.1.0.0.css')
+
+      //- Fav Icons
+      link(rel='apple-touch-icon', sizes='180x180', href='/apple-touch-icon.png')
+      link(rel='icon', type='image/png', href='/favicon-32x32.png', sizes='32x32')
+      link(rel='icon', type='image/png', href='/favicon-16x16.png', sizes='16x16')
+      link(rel='manifest', href='/manifest.json')
+      link(rel='mask-icon', href='/safari-pinned-tab.svg', color='#5bbad5')
+      meta(name='msapplication-TileColor', content='#b91d47')
+      meta(name='msapplication-TileImage', content='/mstile-144x144.png')
+      meta(name='theme-color', content='#ffffff')
+      
+      
+      //- Social media tags
+      block social
+
+        block Facebook
+          //- Facebook Open Graph tags
+          meta(property='og:description', content=settings.DESCRIPTION)
+          meta(property='og:type', content='website')
+          meta(property='og:site_name', content=settings.TITLE)
+          
+        block twitter
+          //- Twitter Tags
+          meta(name='twitter:card', content='summary_large_image')
+          meta(name='twitter:site', content='@haven')
+          meta(name='twitter:creator', content='@haven')
+          meta(name='twitter:title', content=settings.TITLE)
+          meta(name='twitter:description', content=settings.DESCRIPTION)
+          meta(name='twitter:image', content='/images/jpg/logo.jpg')
+      
+  //- Body ---------------------------------------------------------------
+  body
+    
+    //- Demo Nav
+    block navigation
+    
+    //- Main Header : Overwrite this block in your extended view
+    //- If it alters from the main template
+    header(role='banner')
+      block header
+
+    //- Content : Overwrite this block in your extended view
+    main(role='main', tabindex='-1')
+      block content
+
+    //- Main Footer : Overwrite this block in your extended view
+    //- footer#footer.hv-page-footer(role="contentinfo")
+    block footer
+
+    //- Inline Data -----------------------------------------------------
+    block data
+
+    //- JavaScripts -----------------------------------------------------
+    block scripts
+      script(src='/scripts/main.manifest.0.0.1.js')
+      script(src='/scripts/main.app.0.0.1.js')
+
+    if settings.USE_ANALYTICS
+      //- Analytics code goes here

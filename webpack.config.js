@@ -1,83 +1,137 @@
+const pkg = require('./package.json');
 const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const NODE_ENV = process.env.NODE_ENV || 'production';
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
+const appConfig = {
+  ENV: process.env.NODE_ENV || 'production',
+  VERSION: pkg.version,
+  CSS_NAMESPACE: pkg.config.CSS_NAMESPACE,
+  OUTPUT_NAME: pkg.config.OUTPUT_NAME,
+  DEV_PORT: pkg.config.DEV_PORT,
+  USE_EXPRESS: pkg.config.USE_EXPRESS,
+};
+
+const entries = [
+  {
+    key: 'app',
+    points: [
+      './src/index.js',
+      './src/styles/main.css'
+    ],
+    hot: true
+  }
+];
 
 const config = {
-  context: __dirname,
-  entry: {
-    main: ['./src/index.js', './src/styles/main.css']
-  },
+  context: path.resolve(__dirname),
+  entry: {},
   output: {
-    pathinfo: true,
-    path: path.resolve(__dirname + '/public'),
-    filename: 'scripts/[name].bundle.dev.js'
+    path: path.resolve(__dirname, './public/'),
+    filename: `scripts/${appConfig.OUTPUT_NAME}.[name].${appConfig.VERSION}.js`,
+    publicPath: '/'
   },
   resolve: {
-    modulesDirectories: ['node_modules', 'src'],
-    extensions: ['', '.js', '.jsx', '.css', '.svg']
+    extensions: [ '.js', '.jsx' ]
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        loader: 'babel?compact=false'
-      },
-      { 
-        test: /\.(png|woff|woff2|eot|ttf)$/, 
-        loader: 'url-loader?limit=100000' 
-      },
-      {
-        test: /\.(css)$/,
-        exclude: [ path.resolve(__dirname, 'src/styles') ],
-        loader: ExtractTextPlugin.extract('css-loader?modules&localIdentName=[name]-[local]&sourceMap!postcss?sourceMap=inline')
-      },
-      {
-        test: /\.(css)$/,
-        include: [ path.resolve(__dirname, 'src/styles') ],
-        loader: ExtractTextPlugin.extract('css-loader?sourceMap!postcss?sourceMap=inline')
+        exclude: /(node_modules|bower_components)/,
+        use: 'babel-loader'
       }
     ]
   },
-  devServer: {
-    contentBase: './public',
-    hot: true,
-    historyApiFallback: true,
-    port: 8888
-  },
   plugins: [
-    new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify(NODE_ENV) }}),
-    new webpack.ProvidePlugin({ 'React': 'react' }),
-    new ExtractTextPlugin('styles/[name].bundle.css'),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin()
-  ],
-  devtool: 'source-map',
-  postcss: function() {
-    return [
-      require('postcss-import')({ path: [ path.resolve(__dirname, 'src') ] }),
-      require('postcss-cssnext'),
-      require('postcss-nested'),
-      require('postcss-pixels-to-rem')
-    ];
-  }
+    new ExtractTextPlugin(`./styles/${appConfig.OUTPUT_NAME}.[name].${appConfig.VERSION}.css`),
+    new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(appConfig.ENV) }),
+    new webpack.DefinePlugin({ 'appConfig': JSON.stringify(appConfig) }),
+    new webpack.optimize.CommonsChunkPlugin({ name: 'manifest', minChunks: Infinity })
+  ]
 };
 
-switch (NODE_ENV) {
-  case 'production':
-    config.plugins = config.plugins.concat([
-      new webpack.optimize.OccurenceOrderPlugin(),
-      new webpack.optimize.UglifyJsPlugin({
-        compressor: { warnings: false },
-        output: { comments: false }
-      })
-    ]);
-    config.output.filename = 'scripts/[name].bundle.js';
-    break;
-  case 'development':
-  default:
-    break;
+
+const ruleCss = {
+  test: /\.(css|scss)$/,
+  exclude: /node_modules/,
+  use: [
+    'style-loader',
+    {
+      loader: 'css-loader',
+      options: {
+        sourceMap: true,
+        importLoaders: 1,
+        modules: true,
+        localIdentName: '[name]-[local]'
+      }
+    },
+    'postcss-loader'
+  ]
+};
+
+let plugins = [];
+
+// add the entry points
+entries.map(entry => {
+  config.entry[entry.key] = entry.points;
+
+  console.log(appConfig.ENV, appConfig.USE_EXPRESS, entry.hot)
+
+  if (appConfig.ENV === 'development' && appConfig.USE_EXPRESS && entry.hot) {
+    config.entry[entry.key].unshift('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000');
+  }
+});
+
+if ( appConfig.ENV === 'development' ) {
+
+  config.output.pathinfo = true;
+
+  // add development tools
+  config.devtool = '#source-map';
+
+  config.devServer = {
+    contentBase: './public',
+    port: appConfig.DEV_PORT,
+    hot: true
+  };
+
+  plugins = plugins.concat([
+    // HMR for webpack to express
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
+  ]);
+
+} else {
+  ruleCss.use = ExtractTextPlugin.extract({
+    fallback: 'style-loader',
+    use: [
+      {
+        loader: 'css-loader',
+        options: {
+          sourceMap: true,
+          minimize: true,
+          importLoaders: 1
+        }
+      },
+      'postcss-loader'
+    ]
+  });
+
+  plugins = plugins.concat([
+    new LodashPlugin({
+      paths: true
+    }),
+    // Uglify the JS for production
+    new UglifyJsPlugin({ sourceMap: true, extractComments: true }),
+  ]);
 }
+
+// add webpack plugins
+config.plugins = config.plugins.concat(plugins);
+
+// Apply the css rules
+config.module.rules.push(ruleCss);
 
 module.exports = config;
