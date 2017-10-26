@@ -113,7 +113,9 @@ if ( appConfig.ENV === 'development' ) {
         options: {
           sourceMap: true,
           minimize: true,
-          importLoaders: 1
+          importLoaders: 1,
+          modules: true,
+          localIdentName: '[name]-[local]'
         }
       },
       'postcss-loader'
