@@ -16,7 +16,10 @@ class GifView extends React.Component {
     return (
       <div>
         <p className={cn(styles.text)}>GifView</p>
-        <img src={this.props.gifs[0]} />
+        {this.props.gifs.map(function(gif, index){
+          return <img key={ index } src={ gif } />;
+        })}
+        
       </div>
     );
   }
