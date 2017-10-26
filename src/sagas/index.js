@@ -1,6 +1,6 @@
-import { all, takeEvery } from 'redux-saga/effects';
+import { all, call, takeEvery, put } from 'redux-saga/effects';
 
-import { types } from '../actions';
+import actions, { types } from '../actions';
 
 import gifshot from 'gifshot';
 
@@ -61,9 +61,22 @@ function handleCreateGif() {
   });
 }
 
+function* getGifs() {
+  yield takeEvery(types.GET_GIFS, handleGetGif);
+}
+
+function* handleGetGif() {
+
+  const data = yield call(() => fetch('api/getGifs', { method: 'get' })
+  .then(res => res.json()));
+
+  yield put(actions.storeGifs(data.gifs));
+}
+
 function* sagas() {
   yield all([
-    createGif()
+    createGif(),
+    getGifs()
   ]);
 }
 

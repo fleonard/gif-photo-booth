@@ -5,12 +5,12 @@ import { types } from '../actions';
 
 const ui = handleActions(
   {
-    [types.CREATE_GIF] (state) {
-      return { ...state };
+    [types.STORE_GIFS] (state, action) {
+      return { ...state, gifs: action.payload };
     }
   },
   {
-
+    gifs: []
   }
 );
 

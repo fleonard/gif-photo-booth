@@ -2,8 +2,12 @@
 
 const express = require('express'),
   fse = require('fs-extra'),
+  path = require('path'),
   router = express.Router();
 
+/**
+ * Save created gif in public/assets/gif
+ */
 router.post('/saveGif', (req, res) => {
 
   const img = req.body.data;
@@ -19,6 +23,24 @@ router.post('/saveGif', (req, res) => {
 
   res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify({ message: 'Gif Saved!' }, null, 3));
+});
+
+/**
+ * Get all gifs from folder
+ */
+
+function getFiles(dir) {
+  return fse.statSync(dir).isDirectory()
+      ? Array.prototype.concat(...fse.readdirSync(dir).map(f => getFiles(path.join(dir, f))))
+      : dir;
+}
+
+router.get('/getGifs', (req, res) => {
+
+  const files = getFiles('./public/assets/gifs');
+
+  res.setHeader('Content-Type', 'application/json');
+  res.send(JSON.stringify({ message: 'Here you go all the Gifs!', gifs: files }, null, 3));
 });
 
 module.exports = router;
