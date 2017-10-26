@@ -70,7 +70,7 @@ function* handleGetGif() {
   const data = yield call(() => fetch('api/getGifs', { method: 'get' })
   .then(res => res.json()));
 
-  yield put(actions.storeGifs(data.gifs));
+  yield put(actions.storeGifs(data.gifs.map(gif => gif.replace('server\/public', ''))));
 }
 
 function* sagas() {

@@ -17,7 +17,7 @@ router.post('/saveGif', (req, res) => {
   const timestamp = new Date().getTime().toString();
   const filename = 'gif_' + timestamp;
 
-  fse.outputFile('./public/assets/gifs/' + filename + '.' + ext, buf, (err) => {
+  fse.outputFile(path.join(__dirname, '../public/assets/gifs/') + filename + '.' + ext, buf, (err) => {
     console.log(err);
   });
 
@@ -37,7 +37,7 @@ function getFiles(dir) {
 
 router.get('/getGifs', (req, res) => {
 
-  const files = getFiles('./public/assets/gifs');
+  const files = getFiles('./server/public/assets/gifs');
 
   res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify({ message: 'Here you go all the Gifs!', gifs: files }, null, 3));
