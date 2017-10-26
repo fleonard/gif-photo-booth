@@ -4,7 +4,6 @@ import actions, { types } from '../actions';
 
 import gifshot from 'gifshot';
 
-
 function* createGif() {
   yield takeEvery(types.CREATE_GIF, handleCreateGif);
 }
@@ -14,7 +13,6 @@ function handleCreateGif() {
   const gifshotImagePreview = document.querySelector('.photobooth-imagePreview');
   const progressBar = document.querySelector('.photobooth-progressBar');
   const saveGIFButton = document.querySelector('#save-gif');
-
 
   gifshot.createGIF({
     progressCallback: function (captureProgress) {
@@ -51,12 +49,8 @@ function handleCreateGif() {
             data: image
           })
         })
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (data) {
-          console.log(data.message);
-        });
+        .then(res => res.json())
+        .then(data => console.log(data.message));
     }
   });
 }
