@@ -1,7 +1,13 @@
-node_modules
-public/*.js
-public/*.css
-public/*.map
+# osx
+.DS_Store
 *.log
 .idea
-.DS_Store
+
+# node
+node_modules
+npm-debug.log
+
+
+public/assets/*
+
+
