@@ -53,24 +53,6 @@ const config = {
   ]
 };
 
-// const ruleCss = {
-//   test: /\.(css|scss)$/,
-//   exclude: /node_modules/,
-//   use: [
-//     'style-loader',
-//     {
-//       loader: 'css-loader',
-//       options: {
-//         sourceMap: true,
-//         importLoaders: 1,
-//         modules: true,
-//         localIdentName: '[name]-[local]'
-//       }
-//     },
-//     'postcss-loader'
-//   ]
-// };
-
 const ruleCss = 
   {
     test: /^(?!.*?\.module).*\.(css|scss)$/,
