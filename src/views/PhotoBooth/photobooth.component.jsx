@@ -2,7 +2,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import styles from './photobooth.css';
+import styles from './photobooth.module.css';
 import cn from '../../utils/classname';
 
 class PhotoBooth extends React.Component {

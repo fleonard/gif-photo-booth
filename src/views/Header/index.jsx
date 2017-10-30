@@ -2,10 +2,10 @@ import React from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import styles from './header.css';
+import styles from './header.module.css';
 import cn from '../../utils/classname';
 
-const Header = ({ history }) =>
+const Header = () =>
   <div className={cn(styles.header)}>
     <nav className={cn(styles.nav)}>
       <NavLink exact className={cn(styles.link)} activeClassName={cn(styles.selected)} to="/"> Home </NavLink>

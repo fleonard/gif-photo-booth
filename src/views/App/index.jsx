@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Route } from 'react-router-dom';
 
-import styles from './app.css';
+import styles from './app.module.css';
 import cn from '../../utils/classname';
 
 import Header from '../Header';

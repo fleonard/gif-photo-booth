@@ -82,7 +82,7 @@
     "redux-saga": "^0.15.3"
   },
   "config": {
-    "CSS_NAMESPACE": "",
+    "CSS_NAMESPACE": "gs-",
     "OUTPUT_PATH": "./public",
     "OUTPUT_NAME": "main",
     "USE_EXPRESS": true,

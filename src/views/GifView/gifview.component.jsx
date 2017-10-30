@@ -2,7 +2,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import styles from './gifview.css';
+import styles from './gifview.module.css';
 import cn from '../../utils/classname';
 
 class GifView extends React.Component {
