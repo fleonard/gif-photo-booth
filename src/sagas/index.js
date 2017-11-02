@@ -10,17 +10,24 @@ function* createGif() {
 
 function handleCreateGif() {
   const downloadAttrSupported = 'download' in document.createElement('a');
-  const gifshotImagePreview = document.querySelector('.photobooth-imagePreview');
-  const progressBar = document.querySelector('.photobooth-progressBar');
+  const gifshotImagePreview = document.querySelector('.photobooth-module-imagePreview');
+  const progressBar = document.querySelector('.photobooth-module-progressBar');
   const saveGIFButton = document.querySelector('#save-gif');
 
-  gifshot.createGIF({
+  const config = {
+    gifWidth: 200,
+    gifHeight: 200,
+    interval: 0.1,
+    numFrames: 10,
+    frameDuration: 1,
     progressCallback: function (captureProgress) {
       gifshotImagePreview.innerHTML = '';
       progressBar.classList.remove('hidden');
       progressBar.value = captureProgress;
     }
-  }, function(obj) {
+  };
+
+  gifshot.createGIF(config, function(obj) {
     if (!obj.error) {
       const image = obj.image,
         animatedImage = document.createElement('img');
