@@ -3,7 +3,6 @@
 const express = require('express'),
   router = express.Router();
 
-/* GET Sub sectoin ATOMS page. */
 router.get('/',  (req, res) => {
   res.render('home', {
     title: 'HOME',

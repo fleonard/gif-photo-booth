@@ -1,5 +1,12 @@
 :root {
   --base-size: 16px;
-}
 
-@custom-media --min-resolution (min-resolution: 192dpi);
+  @custom-media --hv-view-width-xsml (min-width: 320px);
+  @custom-media --hv-view-width-lxsml (min-width: 640px);
+  @custom-media --hv-view-width-sml (min-width: 768px);
+  @custom-media --hv-view-width-tbl (min-width: 769px);
+  @custom-media --hv-view-width-med (min-width: 1024px);
+  @custom-media --hv-view-width-lrg (min-width: 1136px)
+  @custom-media --hv-view-width-xlrg (min-width: 1248px);
+  @custom-media --hv-view-width-xxlrg (min-width: 1440px);
+}

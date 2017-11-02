@@ -57,7 +57,7 @@ fse.readdirSync( path.resolve(__dirname, './routes/') )
     app.use(`/${routeName}`, routes[routeName]);
   });
 
-// set root path to the home (can be changed)
+// set root path to the home
 app.use('/', routes['home']);
 
 /**
