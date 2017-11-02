@@ -130,6 +130,21 @@ if ( appConfig.ENV === 'development' ) {
         options: {
           sourceMap: true,
           minimize: true,
+          importLoaders: 1
+        }
+      },
+      'postcss-loader'
+    ]
+  });
+
+  ruleModuleCss.use = ExtractTextPlugin.extract({
+    fallback: 'style-loader',
+    use: [
+      {
+        loader: 'css-loader',
+        options: {
+          sourceMap: true,
+          minimize: true,
           importLoaders: 1,
           modules: true,
           localIdentName: '[name]-[local]'
