@@ -1,4 +1,6 @@
 'use strict';
+/* eslint no-console:0 */
+/* eslint no-magic-numbers:0 */
 
 const express = require('express'),
   fse = require('fs-extra'),
@@ -28,7 +30,6 @@ router.post('/saveGif', (req, res) => {
 /**
  * Get all gifs from folder
  */
-
 function getFiles(dir) {
   return fse.statSync(dir).isDirectory()
       ? Array.prototype.concat(...fse.readdirSync(dir).map(f => getFiles(path.join(dir, f))))

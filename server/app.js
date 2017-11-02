@@ -1,5 +1,6 @@
 'use strict';
 /* eslint no-console:0 */
+/* eslint no-magic-numbers:0 */
 
 const express = require('express'),
   //favicon = require('serve-favicon'),
