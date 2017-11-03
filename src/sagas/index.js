@@ -18,9 +18,9 @@ function handleCreateGif() {
     gifWidth: 200,
     gifHeight: 200,
     interval: 0.1,
-    numFrames: 10,
+    numFrames: 20,
     frameDuration: 1,
-    sampleInterval: 10, // 1 = best quality but slower process
+    sampleInterval: 1, // 1 = best quality but slower process
     progressCallback: function (captureProgress) {
       gifshotImagePreview.innerHTML = '';
       progressBar.classList.remove('hidden');
