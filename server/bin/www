@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+/* eslint no-magic-numbers:0 */
+
 /**
  * Module dependencies.
  */
@@ -30,7 +32,7 @@ server.on('listening', onListening);
  * Normalize a port into a number, string, or false.
  */
 function normalizePort(val) {
-  let port = parseInt(val, 10);
+  const port = parseInt(val, 10);
 
   if (isNaN(port)) {
     // named pipe
@@ -53,7 +55,7 @@ function onError(error) {
     throw error;
   }
 
-  let bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`;
+  const bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
