@@ -9,10 +9,10 @@ function* createGif() {
 }
 
 function handleCreateGif() {
-  const downloadAttrSupported = 'download' in document.createElement('a');
-  const gifshotImagePreview = document.querySelector('.photobooth-module-imagePreview');
-  const progressBar = document.querySelector('.photobooth-module-progressBar');
-  const saveGIFButton = document.querySelector('#save-gif');
+  const downloadAttrSupported = 'download' in document.createElement('a'),
+    gifshotImagePreview = document.querySelector('.photobooth-module-imagePreview'),
+    progressBar = document.querySelector('.photobooth-module-progressBar'),
+    saveGIFButton = document.querySelector('#save-gif');
 
   const config = {
     gifWidth: 200,

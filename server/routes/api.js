@@ -24,7 +24,7 @@ router.post('/saveGif', (req, res) => {
   });
 
   res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify({ message: 'Gif Saved!' }, null, 3));
+  res.send(JSON.stringify({ message: 'Gif Saved!' }));
 });
 
 /**
@@ -41,7 +41,7 @@ router.get('/getGifs', (req, res) => {
   const files = getFiles('./server/public/assets/gifs');
 
   res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify({ message: 'Here you go all the Gifs!', gifs: files }, null, 3));
+  res.send(JSON.stringify({ message: 'Here you go all the Gifs!', gifs: files }));
 });
 
 module.exports = router;
