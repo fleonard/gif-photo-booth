@@ -12,12 +12,12 @@ const express = require('express'),
  */
 router.post('/saveGif', (req, res) => {
 
-  const img = req.body.data;
-  const ext = img.split(';')[0].match(/jpeg|png|gif/)[0];
-  const data = img.replace(/^data:image\/\w+;base64,/, '');
-  const buf = new Buffer(data, 'base64');
-  const timestamp = new Date().getTime().toString();
-  const filename = 'gif_' + timestamp;
+  const img = req.body.data,
+    ext = img.split(';')[0].match(/jpeg|png|gif/)[0],
+    data = img.replace(/^data:image\/\w+;base64,/, ''),
+    buf = new Buffer(data, 'base64'),
+    timestamp = new Date().getTime().toString(),
+    filename = 'gif_' + timestamp;
 
   fse.outputFile(path.join(__dirname, '../public/assets/gifs/') + filename + '.' + ext, buf, (err) => {
     console.log(err);
